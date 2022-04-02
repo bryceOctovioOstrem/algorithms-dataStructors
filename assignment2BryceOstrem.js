@@ -1,26 +1,40 @@
-  
-  
+
 	function augmentingPath(graph, start, end) //  function to default graph to not visited
     {
         let visited = new Array(this.graph); // creates array to rember which nodes have been visited
-        for(let i = 0; i < this.graph; i++) // marks all nodes as not visited as default 
-            visited[i] = false;
+        for(let h = 0; h < this.graph; h++) // marks all nodes as not visited as default 
+            visited[h] = false;
 			let path = [];// stores the path for returning 
+			//let options = ['foo', 'boo', 'bar'];
 		var n = start; // creates a variable called n to uses as an iterator
-		while (n != end){ // runs until nwe find path
-		console.log(n);
+		var b = graph[start];
+		
+		for(var j =0; j < 100; j++){ // runs until nwe find path
+		
+			b = graph[n];
 			visited[n] = true; // sets current node as visited
-			for(let z=0; z <= graph.length; z++ ){ // iterates nthrouugh outer nodes
-				if (graph[n] = end ){ // checks to see if we have finished the path
-					for(var g =0; g < visited.length; g++){// fills path for returning
-						if (visited[g] == true) // checks to see if node has been visited
-						path.push(String(graph[n])); // appends name of node
-					}
-					return(path) // returns the path
-				}else if(graph[n][z] == 1 && visited[z] == false){// traverses through the graph by checking if there is samn edge and if it's been visited. 
-					n = graph.; // goes down the selected edge
-				}
+			path.push(n);
+				  if (Object.keys(b).includes(end)){
+				    b = graph[end];
+				    n = end;
+				    visited[n] = true;
+				    path.push(end);
+				  break;
+			} else{
+			  for(var i =0; i < Object.keys(b).length; i++)
+			  if(!(path.includes(Object.keys(b)[i]))){
+			  n = Object.keys(b)[i];
+			  }
+			}// goes down the selected edge
+					//console.log(graph[n][z]);
 			}
+		if (path.includes(end)){
+		  console.log(path);
+		}else{
+		  path = {};
+		  console.log(path);
 		}
-    }
-	augmentingPath({foo: {bar: 1, foo: 0},bar: {foo: 0, bar: 0}},'foo','bar'); // first test for testing 
+		}
+//var graph = {'foo': {'boo': 7},'boo': {'foo': 3, 'bar': 2},'bar': {'boo': 4}};
+var graph = {'foo': {'boo': 7},'boo': {'foo': 3},'bar': {'boo': 4}};
+	augmentingPath( graph,'foo','bar'); // second test for testing
